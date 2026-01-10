@@ -20,3 +20,6 @@ class FuelTest(unittest.TestCase):
         with self.assertRaises(ValueError):
             Fuel("petrol",795,-5)
 
+    def test_update_price(self):
+
+
