@@ -12,7 +12,11 @@ class FuelTest(unittest.TestCase):
         self.assertEqual(fuel.quantity,20)
 
 
-    def test_Invalid_price(self):
+    def test_Invalid_price_throws_exception(self):
         with self.assertRaises(ValueError):
             Fuel("petrol",0,20)
+
+    def test_invalid_quantity_throws_exception(self):
+        with self.assertRaises(ValueError):
+            Fuel("petrol",795,-5)
 
