@@ -35,7 +35,7 @@ class Dispenser:
 
 
         amount = liters * fuel.price_per_liter
-        fuel.dispense(liters)
+        fuel.dispenser(liters)
 
         tranx = Transaction(fuel_name, liters, amount)
         self._transactions.append(tranx)
@@ -52,7 +52,7 @@ class Dispenser:
         if liters > fuel.quantity:
             raise InsufficientFuelQuantityError()
 
-        fuel.dispense(liters)
+        fuel.dispenser(liters)
 
         tranx = Transaction(fuel_name, liters, amount)
         self._transactions.append(tranx)

@@ -5,3 +5,6 @@ class FuelAttendant:
 
     def view_fuels(self):
         return self.dispenser.get_fuels()
+
+    def dispenses_by_liters(self, fuel_name, liters):
+        return self.dispenser.dispense_by_liters(fuel_name, liters)
