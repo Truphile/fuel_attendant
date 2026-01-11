@@ -17,5 +17,11 @@ class FuelAttendant:
     def dispenses_by_amount(self, fuel_name, amount):
         return self.dispenser.dispense_by_amount(fuel_name, amount)
 
+    def update_fuel_price(self, fuel_name: str, new_price: float):
+        fuel = self.dispenser.get_fuel(fuel_name)
+        fuel.update_price(new_price)
+
+    def
+
     def transactions(self):
         return self.dispenser.get_transactions()
