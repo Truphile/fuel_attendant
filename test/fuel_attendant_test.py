@@ -9,9 +9,13 @@ class AttendantTest(unittest.TestCase):
 
     def setUp(self):
         self.dispenser = Dispenser()
-        self.dispenser.add_fuel(Fuel("Petrol", 650, 100))
+        self.dispenser.add_fuel(Fuel("Petrol", 795, 30))
         self.attendant = FuelAttendant("Segun", self.dispenser)
 
     def test_view_fuels_returns_all_available_fuels(self):
         fuels = list(self.attendant.view_fuels())
         self.assertEqual(len(fuels), 1)
+
+    def test_dispenses_by_liters(self):
+        tranx = self.attendant.dispenses_by_liters("Petrol", 10)
+        self.assertEqual(tranx.amount, 7950)
