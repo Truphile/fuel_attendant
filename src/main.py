@@ -3,7 +3,7 @@ from src.dispenser import Dispenser
 from src.fuel_attendant import FuelAttendant
 from src.exceptions import (
     InsufficientFuelQuantityError,
-    InvalidDispenseValueError
+    InvalidDispenseValueError, FuelNameNotFoundError
 )
 
 
@@ -51,8 +51,8 @@ def get_numeric_value(prompt):
             print("Only numbers are allowed.")
 
 
-dispenser_core = Dispenser()
-dispenser = FuelAttendant("MFDS Attendant", dispenser_core)
+dispenser = Dispenser()
+attendant = FuelAttendant("MFDS Attendant", dispenser)
 
 try:
     while True:
@@ -61,7 +61,7 @@ try:
 
         try:
             if choice == "1":
-                fuels = dispenser.view_fuels()
+                fuels = attendant.view_fuels()
                 if not fuels:
                     print("No fuel available.")
                     continue
@@ -74,43 +74,45 @@ try:
                 name = get_alpha_string("Fuel name: ")
                 price = get_numeric_value("Price per liter: ")
                 quantity = get_numeric_value("Initial quantity (liters): ")
-                dispenser.add_fuel(Fuel(name, price, quantity))
+                attendant.add_fuel(Fuel(name, price, quantity))
                 print("Fuel added successfully.")
 
             elif choice == "3":
                 name = get_alpha_string("Fuel name: ")
-                if name not in dispenser_core.fuels:
+                try:
+                    new_price = get_numeric_value("New price per liter: ")
+                    attendant.update_fuel_price(name, new_price)
+                    print("Fuel price updated.")
+                except FuelNameNotFoundError:
                     print("Fuel not found.")
-                    continue
-                new_price = get_numeric_value("New price per liter: ")
-                dispenser_core.fuels[name].update_price(new_price)
-                print("Fuel price updated.")
+
 
             elif choice == "4":
                 name = get_alpha_string("Fuel name: ")
-                if name not in dispenser_core.fuels:
+                try:
+                    liters = get_numeric_value("Liters to restock: ")
+                    attendant.restock_fuel(name, liters)
+                    print("Fuel restocked successfully.")
+                except FuelNameNotFoundError:
                     print("Fuel not found.")
-                    continue
-                liters = get_numeric_value("Liters to restock: ")
-                dispenser_core.fuels[name].restock(liters)
-                print("Fuel restocked successfully.")
+
 
             elif choice == "5":
                 name = get_alpha_string("Fuel name: ")
                 liters = get_numeric_value("Liters to buy (1–50): ")
-                tranx = dispenser.dispense_by_liters(name, liters)
+                tranx = attendant.dispense_by_liters(name, liters)
                 print("\n--- RECEIPT ---")
                 print(tranx.receipt())
 
             elif choice == "6":
                 name = get_alpha_string("Fuel name: ")
                 amount = get_numeric_value("Amount to spend (₦): ")
-                tranx = dispenser.dispense_by_amount(name, amount)
+                tranx = attendant.dispense_by_amount(name, amount)
                 print("\n--- RECEIPT ---")
                 print(tranx.receipt())
 
             elif choice == "7":
-                transactions = dispenser.transactions()
+                transactions = attendant.transactions()
                 if not transactions:
                     print("No transactions yet.")
                     continue
@@ -128,6 +130,8 @@ try:
             print("Not enough fuel available.")
         except InvalidDispenseValueError:
             print("Invalid dispense value.")
+        except FuelNameNotFoundError:
+            print("Fuel not found.")
 
 except KeyboardInterrupt:
     print("\nSystem terminated by user.")
