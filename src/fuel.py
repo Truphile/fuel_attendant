@@ -17,3 +17,9 @@ class Fuel:
         if liter <= 0:
             raise ValueError("invalid liter amount")
         self.quantity += liter
+
+    def dispenser(self, liter: float):
+        if liter <= 0 or liter > self.quantity:
+            raise ValueError("invalid liter amount")
+        self.quantity -= liter
+

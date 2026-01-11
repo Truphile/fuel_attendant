@@ -30,4 +30,9 @@ class FuelTest(unittest.TestCase):
         fuel.restock(50)
         self.assertEqual(fuel.quantity,70)
 
+    def test_dispenser_works_correctly(self):
+        fuel = Fuel("petrol",795,40)
+        fuel.dispenser(15)
+        self.assertEqual(fuel.quantity,25)
+
 
