@@ -31,3 +31,24 @@ class Dispenser:
         self._transactions.append(tranx)
         return tranx
 
+    def dispense_by_amount(self, fuel_name: str, amount: float):
+        fuel = self._fuels.get(fuel_name)
+        if not fuel:
+            raise FuelNotFoundError()
+
+        if amount < fuel.price_per_liter:
+            raise InvalidDispenseValueError()
+
+        liters = amount / fuel.price_per_liter
+
+        if liters > fuel.quantity:
+            raise InsufficientFuelError()
+
+        fuel.dispense(liters)
+
+        tranx = Transaction(fuel_name, liters, amount)
+        self._transactions.append(tranx)
+        return tranx
+
+
+

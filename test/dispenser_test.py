@@ -32,4 +32,8 @@ class DispenserTest(unittest.TestCase):
         tranx = self.dispenser.dispense_by_amount("petrol",4500)
         self.assertEqual(tranx.liters,5.66)
 
+    def test_dispense_by_amount_works_correctly(self):
+        tranx = self.dispenser.dispense_by_amount("Petrol", 1590)
+        self.assertEqual(tranx.liters, 2)
+
 
