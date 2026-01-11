@@ -9,6 +9,9 @@ class Dispenser:
     def add_fuel(self,fuel):
         self._fuels[fuel.name] = fuel
 
+    def get_fuels(self):
+        return self._fuels.values()
+
     def dispense_by_liters(self, fuel_name: str, liters: float):
         if liters < 1 or liters > 50:
             raise InvalidDispenseValueError()
@@ -19,4 +22,12 @@ class Dispenser:
 
         if liters > fuel.quantity:
             raise InsufficientFuelError()
+
+
+        amount = liters * fuel.price_per_liter
+        fuel.dispense(liters)
+
+        tranx = Transaction(fuel_name, liters, amount)
+        self._transactions.append(tranx)
+        return tranx
 

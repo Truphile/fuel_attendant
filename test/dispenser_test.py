@@ -26,7 +26,7 @@ class DispenserTest(unittest.TestCase):
 
     def test_dispense_insufficient_fuel_raises_exception(self):
         with self.assertRaises(InsufficientFuelError):
-            self.dispenser.dispense_by_liters("petrol",170)
+            self.dispenser.dispense_by_liters("petrol",300)
 
     def test_dispense_by_amount(self):
         tranx = self.dispenser.dispense_by_amount("petrol",4500)
