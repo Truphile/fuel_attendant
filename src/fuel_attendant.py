@@ -1,7 +1,12 @@
+from src.fuel import Fuel
+
 class FuelAttendant:
     def __init__(self,attendant_name: str, dispenser):
         self.attendant_name = attendant_name
         self.dispenser = dispenser
+
+    def add_fuel(self, fuel: Fuel):
+         self.dispenser.add_fuel(fuel)
 
     def view_fuels(self):
         return self.dispenser.get_fuels()
