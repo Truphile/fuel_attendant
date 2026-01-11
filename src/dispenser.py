@@ -1,4 +1,4 @@
-from src.exceptions import InvalidDispenseValueError
+from src.exceptions import InvalidDispenseValueError,FuelNotFoundError
 
 
 class Dispenser:
@@ -12,4 +12,8 @@ class Dispenser:
     def dispense_by_liters(self, fuel_name: str, liters: float):
         if liters < 1 or liters > 50:
             raise InvalidDispenseValueError()
+
+        fuel = self._fuels.get(fuel_name)
+        if not fuel:
+            raise FuelNotFoundError()
 
