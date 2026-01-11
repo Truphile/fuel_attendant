@@ -3,3 +3,6 @@ class InvalidDispenseValueError(Exception):
 
 class FuelNotFoundError(Exception):
     pass
+
+class InsufficientFuelError(Exception):
+    pass

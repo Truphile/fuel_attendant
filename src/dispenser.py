@@ -1,4 +1,4 @@
-from src.exceptions import InvalidDispenseValueError,FuelNotFoundError
+from src.exceptions import InvalidDispenseValueError,FuelNotFoundError,InsufficientFuelError
 
 
 class Dispenser:
@@ -16,4 +16,7 @@ class Dispenser:
         fuel = self._fuels.get(fuel_name)
         if not fuel:
             raise FuelNotFoundError()
+
+        if liters > fuel.quantity:
+            raise InsufficientFuelError()
 

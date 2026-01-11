@@ -1,7 +1,7 @@
 import unittest
 
 from src.dispenser import Dispenser
-from src.exceptions import InvalidDispenseValueError, FuelNotFoundError
+from src.exceptions import InvalidDispenseValueError, FuelNotFoundError, InsufficientFuelError
 from src.fuel import Fuel
 
 
@@ -23,4 +23,13 @@ class DispenserTest(unittest.TestCase):
     def test_dispense_fuel_not_found_raises_exception(self):
         with self.assertRaises(FuelNotFoundError):
             self.dispenser.dispense_by_liters("aviation fuel",20)
+
+    def test_dispense_insufficient_fuel_raises_exception(self):
+        with self.assertRaises(InsufficientFuelError):
+            self.dispenser.dispense_by_liters("petrol",170)
+
+    def test_dispense_by_amount(self):
+        tranx = self.dispenser.dispense_by_amount("petrol",4500)
+        self.assertEqual(tranx.liters,5.66)
+
 
