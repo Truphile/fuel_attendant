@@ -1,8 +1,8 @@
 class InvalidDispenseValueError(Exception):
     pass
 
-class FuelNotFoundError(Exception):
+class FuelNameNotFoundError(Exception):
     pass
 
-class InsufficientFuelError(Exception):
+class InsufficientFuelQuantityError(Exception):
     pass
