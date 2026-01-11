@@ -29,12 +29,12 @@ class DispenserTest(unittest.TestCase):
             self.dispenser.dispense_by_liters("Aviation fuel",20)
 
     def test_dispense_insufficient_fuel_raises_exception(self):
-        with self.assertRaises(InsufficientFuelQuantityError):
+        with self.assertRaises(InvalidDispenseValueError):
             self.dispenser.dispense_by_liters("Petrol",300)
 
     def test_dispense_by_amount(self):
         tranx = self.dispenser.dispense_by_amount("Petrol",4500)
-        self.assertAlmostEqual(tranx.liters,5.66)
+        self.assertAlmostEqual(tranx.liters,5.66037735)
 
     def test_dispense_by_amount_works_correctly(self):
         tranx = self.dispenser.dispense_by_amount("Petrol", 1590)

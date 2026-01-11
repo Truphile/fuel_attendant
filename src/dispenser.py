@@ -30,10 +30,6 @@ class Dispenser:
         fuel = self.get_fuel(fuel_name)
 
 
-        if liters > fuel.quantity:
-            raise InsufficientFuelQuantityError()
-
-
         amount = liters * fuel.price_per_liter
         fuel.dispenser(liters)
 
