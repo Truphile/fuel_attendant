@@ -1,0 +1,2 @@
+class InvalidDispenseValueError(Exception):
+    pass
