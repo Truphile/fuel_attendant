@@ -11,3 +11,7 @@ class AttendantTest(unittest.TestCase):
         self.dispenser = Dispenser()
         self.dispenser.add_fuel(Fuel("Petrol", 650, 100))
         self.attendant = FuelAttendant("Segun", self.dispenser)
+
+    def test_view_fuels_returns_all_available_fuels(self):
+        fuels = list(self.attendant.view_fuels())
+        self.assertEqual(len(fuels), 1)
