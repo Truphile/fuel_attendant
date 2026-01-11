@@ -8,3 +8,6 @@ class FuelAttendant:
 
     def dispenses_by_liters(self, fuel_name, liters):
         return self.dispenser.dispense_by_liters(fuel_name, liters)
+
+    def dispenses_by_amount(self, fuel_name, amount):
+        return self.dispenser.dispense_by_amount(fuel_name, amount)
