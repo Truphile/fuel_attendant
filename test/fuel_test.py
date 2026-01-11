@@ -21,5 +21,8 @@ class FuelTest(unittest.TestCase):
             Fuel("petrol",795,-5)
 
     def test_update_price(self):
+        fuel = Fuel("petrol",795,20)
+        fuel.update_price_per_liter(805)
+        self.assertEqual(fuel.price_per_liter,805)
 
 

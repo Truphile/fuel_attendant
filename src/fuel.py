@@ -7,3 +7,8 @@ class Fuel:
         self.name = name
         self.quantity = quantity
         self.price_per_liter = price_per_liter
+
+    def update_price_per_liter(self, new_price_per_liter: float):
+        if new_price_per_liter <= 0:
+            raise ValueError("invalid price_per_liter")
+        self.price_per_liter = new_price_per_liter
