@@ -25,4 +25,9 @@ class FuelTest(unittest.TestCase):
         fuel.update_price_per_liter(805)
         self.assertEqual(fuel.price_per_liter,805)
 
+    def test_restock_fuel(self):
+        fuel = Fuel("petrol",795,20)
+        fuel.restock(50)
+        self.assertEqual(fuel.quantity,70)
+
 

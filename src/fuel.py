@@ -12,3 +12,8 @@ class Fuel:
         if new_price_per_liter <= 0:
             raise ValueError("invalid price_per_liter")
         self.price_per_liter = new_price_per_liter
+
+    def restock(self, liter: float):
+        if liter <= 0:
+            raise ValueError("invalid liter amount")
+        self.quantity += liter
