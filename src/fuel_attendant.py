@@ -11,3 +11,6 @@ class FuelAttendant:
 
     def dispenses_by_amount(self, fuel_name, amount):
         return self.dispenser.dispense_by_amount(fuel_name, amount)
+
+    def transactions(self):
+        return self.dispenser.get_transactions()

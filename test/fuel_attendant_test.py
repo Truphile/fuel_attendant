@@ -23,3 +23,4 @@ class AttendantTest(unittest.TestCase):
     def test_dispenses_by_amount(self):
         tranx = self.attendant.dispenses_by_amount("Petrol", 7950)
         self.assertEqual(tranx.liters, 10)
+
